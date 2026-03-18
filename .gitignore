@@ -1,0 +1,51 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.pem
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 환경변수
+.env
+.env.*
+
+# 로그
+*.log
+
+# Claude 설정
+.claude/
+
+# 의존성 및 빌드
+node_modules/
+.next/
+out/
+build/
+coverage/
+
+# 패키지 매니저
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# 캐시 및 도구
+.eslintcache
+.stylelintcache
+.jest/
+.turbo/
+.pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# 배포
+.vercel
