@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { ImageUp } from "lucide-react";
 
 interface DropzoneProps {
   onImageSelect: (file: File) => void;
@@ -66,7 +67,7 @@ export default function Dropzone({ onImageSelect }: DropzoneProps) {
         onChange={handleFileInput}
         className="absolute inset-0 opacity-0 cursor-pointer"
       />
-      <div className="text-4xl select-none">🖼️</div>
+      <ImageUp className="w-10 h-10 text-gray-400" strokeWidth={1.5} />
       <p className="text-gray-600 font-medium">
         이미지를 드래그하거나 클릭해서 업로드
       </p>
