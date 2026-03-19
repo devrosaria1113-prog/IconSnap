@@ -2,12 +2,14 @@
 
 import { useCallback, useState } from "react";
 import { ImageUp } from "lucide-react";
+import { useLang } from "@/lib/i18n";
 
 interface DropzoneProps {
   onImageSelect: (file: File) => void;
 }
 
 export default function Dropzone({ onImageSelect }: DropzoneProps) {
+  const { t } = useLang();
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -16,15 +18,12 @@ export default function Dropzone({ onImageSelect }: DropzoneProps) {
       setError(null);
       const validTypes = ["image/png", "image/jpeg", "image/webp"];
       if (!validTypes.includes(file.type)) {
-        setError("PNG, JPG, WEBP 형식만 지원합니다.");
+        setError(t.dropzoneError);
         return;
-      }
-      if (file.type !== "image/png") {
-        // 알림은 하되 차단하지는 않음
       }
       onImageSelect(file);
     },
-    [onImageSelect]
+    [onImageSelect, t]
   );
 
   const handleDrop = useCallback(
@@ -68,13 +67,9 @@ export default function Dropzone({ onImageSelect }: DropzoneProps) {
         className="absolute inset-0 opacity-0 cursor-pointer"
       />
       <ImageUp className="w-10 h-10 text-gray-400" strokeWidth={1.5} />
-      <p className="text-gray-600 font-medium">
-        이미지를 드래그하거나 클릭해서 업로드
-      </p>
-      <p className="text-sm text-gray-400">PNG, JPG, WEBP · 투명도 유지는 PNG 권장</p>
-      {error && (
-        <p className="text-sm text-red-500 font-medium">{error}</p>
-      )}
+      <p className="text-gray-600 font-medium">{t.dropzoneLabel}</p>
+      <p className="text-sm text-gray-400">{t.dropzoneHint}</p>
+      {error && <p className="text-sm text-red-500 font-medium">{error}</p>}
     </div>
   );
 }
